@@ -1,0 +1,107 @@
+//                                          ------------- HOMEWORK Oluşturma  -----------------
+
+
+
+
+
+
+
+
+
+  //                                        ------------- Butonları Oluşturma  -----------------
+
+
+const buttonCreate = () => {
+
+  let buttons = `
+  <button type="button" id="All" class="btn btn-outline-dark mx-2">All</button>
+  <button type="button" id="Korea" class="btn btn-outline-dark mx-2">Korea</button>
+  <button type="button" id="Japan" class="btn btn-outline-dark mx-2">Japan</button>
+  <button type="button" id="China" class="btn btn-outline-dark mx-2">China</button>
+  `
+  btn_container.innerHTML = buttons;
+
+}
+buttonCreate()
+
+//                     ------------- Sayfa yüklendiği anda bütün yemek listesini getir  -------------
+
+function Default() {
+  let listing = " "
+  menu.map((e) => {
+    listing += createFoodList(e);
+  });
+  section_center.innerHTML = listing
+
+}
+Default()
+
+//                     ------------------ buton eventi oluşturma ----------------
+
+let buttonEventForAll = document.getElementById("All").addEventListener("click",listAllFood)
+let buttonEventForKorea = document.getElementById("Korea").addEventListener("click", listKoreaFood)
+let buttonEventForJapan = document.getElementById("Japan").addEventListener("click", listJapanFood)
+let buttonEventForChina = document.getElementById("China").addEventListener("click", listChinaFood)
+
+
+//                 ------------------ yemekleri filtreleme  ----------------
+
+function listAllFood() {
+  let listing = " "
+  menu.map((e) => {
+    listing += createFoodList(e);
+  });
+  section_center.innerHTML = listing
+}
+
+function listKoreaFood() {
+  let listing = " "
+  menu.map((e) => {
+    if (e.category == "Korea") {
+      listing += createFoodList(e);
+    }
+  });
+  section_center.innerHTML = listing
+}
+
+
+function listJapanFood() {
+  let listing = " "
+  menu.map((e) => {
+    if (e.category == "Japan") {
+      listing += createFoodList(e);
+    }
+  });
+  section_center.innerHTML = listing
+}
+
+
+function listChinaFood() {
+  let listing = " "
+  menu.map((e) => {
+    if (e.category == "China") {
+      listing += createFoodList(e);
+    }
+  });
+  section_center.innerHTML = listing
+}
+
+//                                ------------------Şablon oluşturma   ----------------
+
+function createFoodList(item) {
+  let menu = `
+  <div class="menu-items col-lg-6 col-sm-12">
+     <img src="${item.img}" alt="${item.title}" ramen="" class="photo">
+        <div class="menu-info">
+            <div class="menu-title">
+                <h4>${item.title} Ramen</h4>
+                <h4 class="price">${item.price}</h4>
+              </div>
+              <div class="menu-text">
+                ${item.desc}
+              </div>
+            </div>
+          </div>
+  `;
+  return menu;
+}
